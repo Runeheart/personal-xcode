@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FCD5D391BC040C7000569F9 /* States.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD5D381BC040C7000569F9 /* States.plist */; settings = {ASSET_TAGS = (); }; };
 		3FF7DE0F1BC0282E00206E0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF7DE0E1BC0282E00206E0C /* AppDelegate.swift */; };
 		3FF7DE111BC0282E00206E0C /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF7DE101BC0282E00206E0C /* StateViewController.swift */; };
 		3FF7DE141BC0282E00206E0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7DE121BC0282E00206E0C /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FCD5D381BC040C7000569F9 /* States.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = States.plist; sourceTree = "<group>"; };
 		3FF7DE0B1BC0282E00206E0C /* weatherAdvisor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weatherAdvisor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF7DE0E1BC0282E00206E0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FF7DE101BC0282E00206E0C /* StateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				3FF7DE171BC0282E00206E0C /* LaunchScreen.storyboard */,
 				3FF7DE1A1BC0282E00206E0C /* Info.plist */,
 				3FF7DE201BC0299000206E0C /* AlertViewController.swift */,
+				3FCD5D381BC040C7000569F9 /* States.plist */,
 			);
 			path = weatherAdvisor;
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 			files = (
 				3FF7DE191BC0282E00206E0C /* LaunchScreen.storyboard in Resources */,
 				3FF7DE161BC0282E00206E0C /* Assets.xcassets in Resources */,
+				3FCD5D391BC040C7000569F9 /* States.plist in Resources */,
 				3FF7DE141BC0282E00206E0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +293,7 @@
 				3FF7DE1F1BC0282E00206E0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
