@@ -13,10 +13,11 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     var stateName = String()
     var alerts: [WeatherAlert] = []
     var base: WeatherAlert = WeatherAlert()
-    var entryFound: Bool = false
-    var eventFound: Bool = false
-    var expiresFound: Bool = false
-    var summaryFound: Bool = false
+    var entryFound: Bool = false, eventFound: Bool = false, expiresFound: Bool = false
+    var summaryFound: Bool = false, effectiveFound: Bool = false
+    var urgencyFound: Bool = false, severityFound: Bool = false
+    var certaintyFound: Bool = false, linkFound: Bool = false, polyFound: Bool = false
+    
     @IBOutlet weak var testLabel: UILabel!
     
     override func viewDidLoad() {
@@ -25,54 +26,74 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
         let xmlParser = NSXMLParser(contentsOfURL: url!)
         xmlParser?.delegate = self
         xmlParser?.parse()
-        
         // Do any additional setup after loading the view.
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        if (elementName == "entry") {
-            entryFound = true
-            base = WeatherAlert()
-        }
-        if (elementName == "cap:event") {
-            eventFound = true
-        }
-        if (elementName == "cap:expires") {
-            expiresFound = true
-        }
-        if (elementName == "summary") {
-            summaryFound = true
+        configureBooleanBasedOn(elementName)
+    }
+    
+    func configureBooleanBasedOn(element: String) {
+        switch(element) {
+        case "entry":
+            entryFound = entryFound ? false : true
+            if entryFound {
+                base = WeatherAlert()
+            } else {
+                alerts.append(base)
+            }
+            break
+        case "cap:event":
+            eventFound = eventFound ? false : true
+            break
+        case "cap:expires":
+            expiresFound = expiresFound ? false : true
+            break
+        case "summary":
+            summaryFound = summaryFound ? false : true
+            break
+        case "cap:effective":
+            effectiveFound = effectiveFound ? false : true
+            break
+        case "cap:urgency":
+            urgencyFound = urgencyFound ? false : true
+            break
+        case "cap:severity":
+            severityFound = severityFound ? false : true
+            break
+        case "cap:certainty":
+            certaintyFound = certaintyFound ? false : true
+            break
+        case "cap:polygon":
+            polyFound = polyFound ? false : true
+        default: break
         }
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if(elementName == "entry") {
-            entryFound = false
-            alerts.append(base)
-        }
-        if (elementName == "cap:event") {
-            eventFound = false
-        }
-        if (elementName == "cap:expires") {
-            expiresFound = false
-        }
-        if (elementName == "summary") {
-            summaryFound = false
-        }
+        configureBooleanBasedOn(elementName)
     }
     
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
+    func parser(parser: NSXMLParser, foundCharacters tagValue: String) {
         if (eventFound) {
-            base.setEvent(string)
-        }
-        if (expiresFound) {
-            base.setExpires(string)
-        }
-        if (summaryFound) {
-            if(string == base.defSummary) {
-                base.setEvent(string)
+            base.setEvent(tagValue)
+        } else if (expiresFound) {
+            base.setExpires(tagValue)
+        } else if (summaryFound) {
+            if(tagValue == base.defSummary) {
+                base.setEvent("There are no active alerts")
                 base.setExpires("")
             }
+        } else if (effectiveFound) {
+            base.setEffective(tagValue)
+        } else if (urgencyFound) {
+            base.setUrgency(tagValue)
+        } else if (severityFound) {
+            base.setSeverity(tagValue)
+        } else if (certaintyFound) {
+            base.setCertainty(tagValue)
+        } else if (polyFound) {
+            base.setPoints(tagValue)
         }
     }
     
@@ -103,15 +124,5 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

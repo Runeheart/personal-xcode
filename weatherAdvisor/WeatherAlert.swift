@@ -12,15 +12,8 @@ class WeatherAlert {
     
     let defSummary: String = "There are no active watches, warnings or advisories"
     
-    var event = ""
-    var expires = ""
-    var summary = ""
-    var effective = ""
-    var urgency = ""
-    var severity = ""
-    var certainty = ""
-    var link = ""
-    var polygon = ""
+    var event = "", expires = "", summary = "", effective = "", urgency = ""
+    var severity = "", certainty = "", link = "", points = ""
     
     init() {}
     
@@ -35,5 +28,31 @@ class WeatherAlert {
     func setSummary(incSummary: String) {
         self.summary = incSummary
     }
+    
+    func setEffective(incEffective: String) {
+        self.effective = incEffective
+    }
+    
+    func setUrgency(incUrgency: String) {
+        self.urgency = incUrgency
+    }
+    
+    func setSeverity(incSeverity: String) {
+        self.severity = incSeverity
+    }
+    
+    func setCertainty(incCertainty: String) {
+        self.certainty = incCertainty
+    }
+    
+    func setLink(incLink: String) {
+        self.link = incLink
+    }
+    
+    func setPoints(incPoly: String) {
+        self.points = incPoly
+    }
+    
+    
     
 }
