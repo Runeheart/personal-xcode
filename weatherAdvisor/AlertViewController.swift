@@ -11,9 +11,12 @@ import UIKit
 class AlertViewController: UIViewController, NSXMLParserDelegate {
 
     var stateName = String()
-    var alerts: [String] = []
-    var entryString = String()
+    var alerts: [WeatherAlert] = []
+    var base: WeatherAlert = WeatherAlert()
     var entryFound: Bool = false
+    var eventFound: Bool = false
+    var expiresFound: Bool = false
+    var summaryFound: Bool = false
     @IBOutlet weak var testLabel: UILabel!
     
     override func viewDidLoad() {
@@ -29,20 +32,50 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         if (elementName == "entry") {
             entryFound = true
+            base = WeatherAlert()
+        }
+        if (elementName == "cap:event") {
+            eventFound = true
+        }
+        if (elementName == "cap:expires") {
+            expiresFound = true
+        }
+        if (elementName == "summary") {
+            summaryFound = true
         }
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if(elementName == "entry") {
             entryFound = false
+            alerts.append(base)
+        }
+        if (elementName == "cap:event") {
+            eventFound = false
+        }
+        if (elementName == "cap:expires") {
+            expiresFound = false
+        }
+        if (elementName == "summary") {
+            summaryFound = false
         }
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        if(entryFound) {
-            alerts.append(string)
+        if (eventFound) {
+            base.setEvent(string)
+        }
+        if (expiresFound) {
+            base.setExpires(string)
+        }
+        if (summaryFound) {
+            if(string == base.defSummary) {
+                base.setEvent(string)
+                base.setExpires("")
+            }
         }
     }
+    
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
@@ -51,8 +84,9 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
-        let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.Default, reuseIdentifier:"cell")
-        cell.textLabel?.text = alerts[indexPath.row]
+        let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:"cell")
+        cell.textLabel?.text = alerts[indexPath.row].event
+        cell.detailTextLabel?.text = alerts[indexPath.row].expires
         return cell
     }
 //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

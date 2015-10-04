@@ -10,10 +10,30 @@ import Foundation
 
 class WeatherAlert {
     
+    let defSummary: String = "There are no active watches, warnings or advisories"
     
+    var event = ""
+    var expires = ""
+    var summary = ""
+    var effective = ""
+    var urgency = ""
+    var severity = ""
+    var certainty = ""
+    var link = ""
+    var polygon = ""
     
-    init() {
+    init() {}
     
+    func setEvent(incEvent: String) {
+        self.event = incEvent
+    }
+    
+    func setExpires(incExpires: String) {
+        self.expires = incExpires
+    }
+    
+    func setSummary(incSummary: String) {
+        self.summary = incSummary
     }
     
 }
