@@ -14,15 +14,36 @@ class WeatherAlert {
     
     var event = "", expires = "", summary = "", effective = "", urgency = ""
     var severity = "", certainty = "", link = "", points = ""
+    var dateFormatter = NSDateFormatter()
     
-    init() {}
+    init() {
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
+    }
     
     func setEvent(incEvent: String) {
         self.event = incEvent
     }
     
     func setExpires(incExpires: String) {
-        self.expires = incExpires
+        if (incExpires != "") {
+            let expireTimestamp: [String] = incExpires.componentsSeparatedByString("T")
+            let dateString: String = expireTimestamp[0]
+            let datePieces: [String] = dateString.componentsSeparatedByString("-")
+            let expireComponents = NSDateComponents()
+            expireComponents.year = Int(datePieces[0])!
+            expireComponents.month = Int(datePieces[1])!
+            expireComponents.day = Int(datePieces[2])!
+            let timeString: String = expireTimestamp[1]
+            let timePieces: [String] = timeString.componentsSeparatedByString("-")
+            let timestamp: [String] = timePieces[0].componentsSeparatedByString(":")
+            expireComponents.hour = Int(timestamp[0])!
+            expireComponents.minute = Int(timestamp[1])!
+            expireComponents.second = Int(timestamp[2])!
+            let expireDate = NSCalendar.currentCalendar().dateFromComponents(expireComponents)
+            expires = "Expires at: " + dateFormatter.stringFromDate(expireDate!)
+            
+        }
     }
     
     func setSummary(incSummary: String) {
