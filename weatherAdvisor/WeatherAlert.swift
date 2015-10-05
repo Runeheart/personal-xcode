@@ -59,7 +59,9 @@ class WeatherAlert {
     }
     
     func setSeverity(incSeverity: String) {
-        self.severity = incSeverity
+        if (incSeverity != "") {
+            self.severity = incSeverity
+        }
     }
     
     func setCertainty(incCertainty: String) {

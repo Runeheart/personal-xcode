@@ -106,10 +106,27 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
         let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:"cell")
-        cell.textLabel?.text = alerts[indexPath.row].event
-        cell.detailTextLabel?.text = alerts[indexPath.row].expires
+        let givenAlert: WeatherAlert = alerts[indexPath.row]
+        cell.textLabel?.text = givenAlert.event
+        cell.detailTextLabel?.text = givenAlert.expires
+        cell.backgroundColor = determineBackgroundColorFrom(givenAlert.severity)
         return cell
     }
+    
+    func determineBackgroundColorFrom(severity: String) -> UIColor {
+        switch(severity) {
+        case "Extreme":
+            return UIColor.redColor()
+        case "Severe":
+            return UIColor.orangeColor()
+        case "Moderate":
+            return UIColor.yellowColor()
+        default:
+            return UIColor.whiteColor()
+        }
+
+    }
+    
 //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        self.performSegueWithIdentifier("testSegue", sender: indexPath);
 //    }
