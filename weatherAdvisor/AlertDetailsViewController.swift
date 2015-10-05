@@ -11,11 +11,14 @@ import UIKit
 class AlertDetailsViewController: UIViewController {
 
     var alert: WeatherAlert = WeatherAlert()
-    @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var eventLabel: UILabel!
+    
+    @IBOutlet weak var summaryTxtView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        testLabel.text = alert.event
+        eventLabel.text = alert.event
+        summaryTxtView.text = alert.summary
         // Do any additional setup after loading the view.
     }
 

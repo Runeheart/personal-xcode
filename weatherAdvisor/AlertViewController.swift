@@ -83,6 +83,8 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
             if(tagValue == base.defSummary) {
                 base.setEvent("There are no active alerts")
                 base.setExpires("")
+            } else {
+                base.setSummary(tagValue)
             }
         } else if (effectiveFound) {
             base.setEffective(tagValue)
