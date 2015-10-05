@@ -12,15 +12,24 @@ class AlertDetailsViewController: UIViewController {
 
     var alert: WeatherAlert = WeatherAlert()
     @IBOutlet weak var eventLabel: UILabel!
-    
     @IBOutlet weak var summaryTxtView: UITextView!
-    
+    @IBOutlet weak var effectiveLabel: UILabel!
+    @IBOutlet weak var expiresLabel: UILabel!
+    @IBOutlet weak var urgencyLabel: UILabel!
+    @IBOutlet weak var severityLabel: UILabel!
+    @IBOutlet weak var certaintyLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         eventLabel.text = alert.event
         summaryTxtView.text = alert.summary
+        effectiveLabel.text = alert.effective
+        expiresLabel.text = alert.expires
+        urgencyLabel.text = (alert.urgency == "" ? "" : "Urgency: ") + alert.urgency
+        severityLabel.text = "Severity: " + alert.severity
+        certaintyLabel.text = "Certainty: " + alert.certainty
         // Do any additional setup after loading the view.
     }
+  
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

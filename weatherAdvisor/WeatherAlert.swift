@@ -27,23 +27,27 @@ class WeatherAlert {
     
     func setExpires(incExpires: String) {
         if (incExpires != "") {
-            let expireTimestamp: [String] = incExpires.componentsSeparatedByString("T")
-            let dateString: String = expireTimestamp[0]
-            let datePieces: [String] = dateString.componentsSeparatedByString("-")
-            let expireComponents = NSDateComponents()
-            expireComponents.year = Int(datePieces[0])!
-            expireComponents.month = Int(datePieces[1])!
-            expireComponents.day = Int(datePieces[2])!
-            let timeString: String = expireTimestamp[1]
-            let timePieces: [String] = timeString.componentsSeparatedByString("-")
-            let timestamp: [String] = timePieces[0].componentsSeparatedByString(":")
-            expireComponents.hour = Int(timestamp[0])!
-            expireComponents.minute = Int(timestamp[1])!
-            expireComponents.second = Int(timestamp[2])!
-            let expireDate = NSCalendar.currentCalendar().dateFromComponents(expireComponents)
-            expires = "Expires at: " + dateFormatter.stringFromDate(expireDate!)
-            
+            let expireDate: NSDate = getDateAndTimeFrom(incExpires)
+            self.expires = "Expires at: " + dateFormatter.stringFromDate(expireDate)
         }
+    }
+    
+    func getDateAndTimeFrom(dateString: String) -> NSDate {
+        let expireTimestamp: [String] = dateString.componentsSeparatedByString("T")
+        let dateSection: String = expireTimestamp[0]
+        let datePieces: [String] = dateSection.componentsSeparatedByString("-")
+        let expireComponents = NSDateComponents()
+        expireComponents.year = Int(datePieces[0])!
+        expireComponents.month = Int(datePieces[1])!
+        expireComponents.day = Int(datePieces[2])!
+        let timeString: String = expireTimestamp[1]
+        let timePieces: [String] = timeString.componentsSeparatedByString("-")
+        let timestamp: [String] = timePieces[0].componentsSeparatedByString(":")
+        expireComponents.hour = Int(timestamp[0])!
+        expireComponents.minute = Int(timestamp[1])!
+        expireComponents.second = Int(timestamp[2])!
+        let finalDate = NSCalendar.currentCalendar().dateFromComponents(expireComponents)
+        return finalDate!
     }
     
     func setSummary(incSummary: String) {
@@ -51,7 +55,10 @@ class WeatherAlert {
     }
     
     func setEffective(incEffective: String) {
-        self.effective = incEffective
+        if (incEffective != "") {
+            let effectiveDate: NSDate = getDateAndTimeFrom(incEffective)
+            self.effective = "Effective from: " + dateFormatter.stringFromDate(effectiveDate)
+        }
     }
     
     func setUrgency(incUrgency: String) {
