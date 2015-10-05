@@ -47,7 +47,7 @@ class StateViewController: UIViewController {
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("testSegue", sender: indexPath);
+        self.performSegueWithIdentifier("stateSegue", sender: indexPath);
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destination = segue.destinationViewController as? AlertViewController

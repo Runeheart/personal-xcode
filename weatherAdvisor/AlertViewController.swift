@@ -127,14 +127,14 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
 
     }
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        self.performSegueWithIdentifier("testSegue", sender: indexPath);
-//    }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let destination = segue.destinationViewController as? AlertDetailsViewController
-//        let index = (sender as! NSIndexPath).row;
-//        destination?.stateName = abbvs[index]
-//    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("alertSegue", sender: indexPath);
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController as? AlertDetailsViewController
+        let index = (sender as! NSIndexPath).row;
+        destination?.alert = alerts[index]
+    }
 
 
     override func didReceiveMemoryWarning() {

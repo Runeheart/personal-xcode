@@ -28,7 +28,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="Uo4-oN-DNO" kind="push" identifier="testSegue" id="DTb-vi-o4l"/>
+                                            <segue destination="Uo4-oN-DNO" kind="push" identifier="stateSegue" id="DTb-vi-o4l"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -71,7 +71,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="wut-E2-rqq" kind="push" id="uvk-Kr-ZQE"/>
+                                            <segue destination="wut-E2-rqq" kind="push" identifier="alertSegue" id="uvk-Kr-ZQE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -111,6 +111,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Eej-1K-g10"/>
+                    <connections>
+                        <outlet property="testLabel" destination="KDs-fI-Efs" id="x2g-7K-K9P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmV-v9-2fB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

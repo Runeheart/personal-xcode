@@ -10,9 +10,12 @@ import UIKit
 
 class AlertDetailsViewController: UIViewController {
 
+    var alert: WeatherAlert = WeatherAlert()
+    @IBOutlet weak var testLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        testLabel.text = alert.event
         // Do any additional setup after loading the view.
     }
 
