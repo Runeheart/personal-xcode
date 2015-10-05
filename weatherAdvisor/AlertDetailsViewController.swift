@@ -18,9 +18,12 @@ class AlertDetailsViewController: UIViewController {
     @IBOutlet weak var urgencyLabel: UILabel!
     @IBOutlet weak var severityLabel: UILabel!
     @IBOutlet weak var certaintyLabel: UILabel!
+    @IBOutlet weak var linkLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         eventLabel.text = alert.event
+        linkLabel.text = alert.link
         summaryTxtView.text = alert.summary
         effectiveLabel.text = alert.effective
         expiresLabel.text = alert.expires

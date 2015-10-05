@@ -16,7 +16,7 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     var entryFound: Bool = false, eventFound: Bool = false, expiresFound: Bool = false
     var summaryFound: Bool = false, effectiveFound: Bool = false
     var urgencyFound: Bool = false, severityFound: Bool = false
-    var certaintyFound: Bool = false, linkFound: Bool = false, polyFound: Bool = false
+    var certaintyFound: Bool = false, polyFound: Bool = false
     
     @IBOutlet weak var testLabel: UILabel!
     
@@ -30,7 +30,12 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        configureBooleanBasedOn(elementName)
+        if (elementName == "link") {
+            let link: String = attributeDict["href"]!
+            base.setLink(link)
+        } else {
+            configureBooleanBasedOn(elementName)
+        }
     }
     
     func configureBooleanBasedOn(element: String) {
