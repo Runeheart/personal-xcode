@@ -148,7 +148,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Severity:" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mOD-Lr-l4B">
-                                <rect key="frame" x="171" y="359" width="129" height="39"/>
+                                <rect key="frame" x="171" y="359" width="218" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -163,6 +163,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="jlD-jn-bqe">
+                                <rect key="frame" x="10" y="485" width="395" height="244"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <connections>
+                                    <outlet property="delegate" destination="wut-E2-rqq" id="QXJ-GH-zB0"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -175,6 +183,7 @@
                         <outlet property="eventLabel" destination="KDs-fI-Efs" id="QCp-X4-eMR"/>
                         <outlet property="expiresLabel" destination="lsJ-DZ-7Ic" id="tKC-dy-dej"/>
                         <outlet property="linkLabel" destination="cfi-fZ-EL3" id="QyX-rT-wm1"/>
+                        <outlet property="polyMap" destination="jlD-jn-bqe" id="mkv-bE-sUu"/>
                         <outlet property="severityLabel" destination="mOD-Lr-l4B" id="Pid-kq-3vR"/>
                         <outlet property="summaryTxtView" destination="NHk-p9-bv6" id="bAy-r9-ySu"/>
                         <outlet property="urgencyLabel" destination="Uvr-G5-NJj" id="cdM-mW-Fjz"/>
