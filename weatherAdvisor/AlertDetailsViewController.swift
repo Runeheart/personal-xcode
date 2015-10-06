@@ -23,17 +23,16 @@ class AlertDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         eventLabel.text = alert.event
-        linkLabel.text = alert.link
         summaryTxtView.text = alert.summary
         effectiveLabel.text = alert.effective
         expiresLabel.text = alert.expires
         urgencyLabel.text = (alert.urgency == "" ? "" : "Urgency: ") + alert.urgency
-        severityLabel.text = "Severity: " + alert.severity
+        severityLabel.text = (alert.severity == "" ? "" : "Severity: ") + alert.severity
         certaintyLabel.text = "Certainty: " + alert.certainty
+        linkLabel.text = "Link: " + alert.link
         // Do any additional setup after loading the view.
     }
-  
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
