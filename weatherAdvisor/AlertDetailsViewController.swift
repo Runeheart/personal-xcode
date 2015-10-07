@@ -26,6 +26,7 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         eventLabel.text = alert.event
         summaryTxtView.text = alert.summary
+        summaryTxtView.backgroundColor = (alert.event == "There are no active alerts" ? UIColor.whiteColor() : UIColor.cyanColor())
         effectiveLabel.text = alert.effective
         expiresLabel.text = alert.expires
         urgencyLabel.text = (alert.urgency == "" ? "" : "Urgency: ") + alert.urgency
