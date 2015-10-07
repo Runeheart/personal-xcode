@@ -36,7 +36,6 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
             polyMap.delegate = self
             configureMapView()
         }
-        // Do any additional setup after loading the view.
     }
     
     func configureMapView() {
@@ -48,18 +47,10 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
         var clCoords: [CLLocationCoordinate2D] = makeClCoordsFrom(coords)
         let poly = MKPolygon(coordinates: &clCoords, count: coords.count)
         polyMap.addOverlay(poly)
-//        let location = CLLocationCoordinate2D(latitude: 40.193 , longitude:-85.388)
-//        let span = MKCoordinateSpanMake(0.05, 0.05)
-//        let region = MKCoordinateRegion(center:location, span:span)
-//        mapView.setRegion(region, animated:true)
     }
     
     func findCenterPointFrom(coordinates: [String]) -> CLLocationCoordinate2D {
         var centerLatitude: Double = 0.0, centerLongitude: Double = 0.0
-//        var topLat: Double, topLong: Double // most positive, its long
-//        var leftLat: Double, leftLong: Double // its lat, most negative
-//        var rightLat: Double, rightLong: Double // its lat, least negative
-//        var bottomLat: Double, bottomLong: Double // least positive, its long
         for ordPair in coordinates {
             let latLon: [String] = ordPair.componentsSeparatedByString(",")
             centerLatitude += Double(latLon[0])!
@@ -95,18 +86,6 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

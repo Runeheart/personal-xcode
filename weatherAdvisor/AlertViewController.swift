@@ -18,15 +18,12 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     var urgencyFound: Bool = false, severityFound: Bool = false
     var certaintyFound: Bool = false, polyFound: Bool = false
     
-    @IBOutlet weak var testLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let url = NSURL(string: "http://alerts.weather.gov/cap/" + stateName + ".php?x=0")
         let xmlParser = NSXMLParser(contentsOfURL: url!)
         xmlParser?.delegate = self
         xmlParser?.parse()
-        // Do any additional setup after loading the view.
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
@@ -146,7 +143,6 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
