@@ -36,6 +36,8 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
         if (alert.points != "") {
             polyMap.delegate = self
             configureMapView()
+        } else {
+            polyMap.alpha = 0.0
         }
     }
     
