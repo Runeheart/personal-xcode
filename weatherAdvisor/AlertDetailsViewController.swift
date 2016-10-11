@@ -26,7 +26,7 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         eventLabel.text = alert.event
         summaryTxtView.text = alert.summary
-        summaryTxtView.backgroundColor = (alert.event == "There are no active alerts" ? UIColor.whiteColor() : UIColor.cyanColor())
+        summaryTxtView.backgroundColor = (alert.event == "There are no active alerts" ? UIColor.white : UIColor.cyan)
         effectiveLabel.text = alert.effective
         expiresLabel.text = alert.expires
         urgencyLabel.text = (alert.urgency == "" ? "" : "Urgency: ") + alert.urgency
@@ -42,20 +42,20 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
     }
     
     func configureMapView() {
-        let coords: [String] = alert.points.componentsSeparatedByString(" ")
+        let coords: [String] = alert.points.components(separatedBy: " ")
         let centerPoint = findCenterPointFrom(coords)
         let span = MKCoordinateSpanMake(0.75, 0.75)
         let region = MKCoordinateRegionMake(centerPoint, span)
         polyMap.setRegion(region, animated: true)
         var clCoords: [CLLocationCoordinate2D] = makeClCoordsFrom(coords)
         let poly = MKPolygon(coordinates: &clCoords, count: coords.count)
-        polyMap.addOverlay(poly)
+        polyMap.add(poly)
     }
     
-    func findCenterPointFrom(coordinates: [String]) -> CLLocationCoordinate2D {
+    func findCenterPointFrom(_ coordinates: [String]) -> CLLocationCoordinate2D {
         var centerLatitude: Double = 0.0, centerLongitude: Double = 0.0
         for ordPair in coordinates {
-            let latLon: [String] = ordPair.componentsSeparatedByString(",")
+            let latLon: [String] = ordPair.components(separatedBy: ",")
             centerLatitude += Double(latLon[0])!
             centerLongitude += Double(latLon[1])!
         }
@@ -65,11 +65,11 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
         return CLLocationCoordinate2D(latitude: centerLatitude, longitude: centerLongitude)
     }
     
-    func makeClCoordsFrom(pairs: [String]) -> [CLLocationCoordinate2D] {
+    func makeClCoordsFrom(_ pairs: [String]) -> [CLLocationCoordinate2D] {
         var cLocations: [CLLocationCoordinate2D] = []
         for ordPair in pairs {
             var temp: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 1.0, longitude: 2.0)
-            let latLon: [String] = ordPair.componentsSeparatedByString(",")
+            let latLon: [String] = ordPair.components(separatedBy: ",")
             temp.latitude = Double(latLon[0])!
             temp.longitude = Double(latLon[1])!
             cLocations.append(temp)
@@ -77,10 +77,10 @@ class AlertDetailsViewController: UIViewController, MKMapViewDelegate {
         return cLocations
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.strokeColor = UIColor.magentaColor()
+            polygonView.strokeColor = UIColor.magenta
             polygonView.lineWidth = 2.0
             return polygonView
         }

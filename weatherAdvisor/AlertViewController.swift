@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlertViewController: UIViewController, NSXMLParserDelegate {
+class AlertViewController: UIViewController, XMLParserDelegate {
 
     var stateName = String()
     var alerts: [WeatherAlert] = []
@@ -20,13 +20,13 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = NSURL(string: "http://alerts.weather.gov/cap/" + stateName + ".php?x=0")
-        let xmlParser = NSXMLParser(contentsOfURL: url!)
+        let url = URL(string: "http://alerts.weather.gov/cap/" + stateName + ".php?x=0")
+        let xmlParser = XMLParser(contentsOf: url!)
         xmlParser?.delegate = self
         xmlParser?.parse()
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         if (elementName == "link") {
             let link: String = attributeDict["href"]!
             base.setLink(link)
@@ -35,7 +35,7 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
         }
     }
     
-    func configureBooleanBasedOn(element: String) {
+    func configureBooleanBasedOn(_ element: String) {
         switch(element) {
         case "entry":
             entryFound = entryFound ? false : true
@@ -72,11 +72,11 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
         }
     }
     
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         configureBooleanBasedOn(elementName)
     }
     
-    func parser(parser: NSXMLParser, foundCharacters tagValue: String) {
+    func parser(_ parser: XMLParser, foundCharacters tagValue: String) {
         if (eventFound) {
             base.setEvent(tagValue)
         } else if (expiresFound) {
@@ -102,14 +102,14 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
     }
     
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
     {
         return alerts.count;
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
+    func tableView(_ tableView: UITableView!, cellForRowAtIndexPath indexPath: IndexPath!) -> UITableViewCell!
     {
-        let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:"cell")
+        let cell:UITableViewCell = UITableViewCell(style:UITableViewCellStyle.subtitle, reuseIdentifier:"cell")
         let givenAlert: WeatherAlert = alerts[indexPath.row]
         cell.textLabel?.text = givenAlert.event
         cell.detailTextLabel?.text = givenAlert.expires
@@ -117,26 +117,26 @@ class AlertViewController: UIViewController, NSXMLParserDelegate {
         return cell
     }
     
-    func determineBackgroundColorFrom(severity: String) -> UIColor {
+    func determineBackgroundColorFrom(_ severity: String) -> UIColor {
         switch(severity) {
         case "Extreme":
-            return UIColor.redColor()
+            return UIColor.red
         case "Severe":
-            return UIColor.orangeColor()
+            return UIColor.orange
         case "Moderate":
-            return UIColor.yellowColor()
+            return UIColor.yellow
         default:
-            return UIColor.whiteColor()
+            return UIColor.white
         }
 
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("alertSegue", sender: indexPath);
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "alertSegue", sender: indexPath);
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController as? AlertDetailsViewController
-        let index = (sender as! NSIndexPath).row;
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as? AlertDetailsViewController
+        let index = ((sender as! IndexPath) as NSIndexPath).row;
         destination?.alert = alerts[index]
     }
 

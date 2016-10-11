@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3FCD5D391BC040C7000569F9 /* States.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD5D381BC040C7000569F9 /* States.plist */; settings = {ASSET_TAGS = (); }; };
-		3FCD5D3B1BC06DC0000569F9 /* AlertDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D3A1BC06DC0000569F9 /* AlertDetailsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		3FCD5D3D1BC06F16000569F9 /* WeatherAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D3C1BC06F16000569F9 /* WeatherAlert.swift */; settings = {ASSET_TAGS = (); }; };
+		3FCD5D391BC040C7000569F9 /* States.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FCD5D381BC040C7000569F9 /* States.plist */; };
+		3FCD5D3B1BC06DC0000569F9 /* AlertDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D3A1BC06DC0000569F9 /* AlertDetailsViewController.swift */; };
+		3FCD5D3D1BC06F16000569F9 /* WeatherAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD5D3C1BC06F16000569F9 /* WeatherAlert.swift */; };
 		3FF7DE0F1BC0282E00206E0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF7DE0E1BC0282E00206E0C /* AppDelegate.swift */; };
 		3FF7DE111BC0282E00206E0C /* StateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF7DE101BC0282E00206E0C /* StateViewController.swift */; };
 		3FF7DE141BC0282E00206E0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7DE121BC0282E00206E0C /* Main.storyboard */; };
 		3FF7DE161BC0282E00206E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7DE151BC0282E00206E0C /* Assets.xcassets */; };
 		3FF7DE191BC0282E00206E0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF7DE171BC0282E00206E0C /* LaunchScreen.storyboard */; };
-		3FF7DE211BC0299000206E0C /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF7DE201BC0299000206E0C /* AlertViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3FF7DE211BC0299000206E0C /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF7DE201BC0299000206E0C /* AlertViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,11 +102,12 @@
 		3FF7DE031BC0282E00206E0C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Jonah Austin";
 				TargetAttributes = {
 					3FF7DE0A1BC0282E00206E0C = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -190,8 +191,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -235,8 +238,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -255,6 +260,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -268,6 +274,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.bsu.jcaustin.weatherAdvisor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -279,6 +286,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.bsu.jcaustin.weatherAdvisor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
