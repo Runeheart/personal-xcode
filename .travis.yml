@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: weatherAdvisor.xcodeproj
+xcode_scheme: weatherAdvisorTests
