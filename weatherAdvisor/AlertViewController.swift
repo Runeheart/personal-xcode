@@ -120,7 +120,7 @@ class AlertViewController: UIViewController, XMLParserDelegate {
     func determineBackgroundColorFrom(_ severity: String) -> UIColor {
         switch(severity) {
         case "Extreme":
-            return UIColor.red
+            return UIColor.darkGray
         case "Severe":
             return UIColor.orange
         case "Moderate":
